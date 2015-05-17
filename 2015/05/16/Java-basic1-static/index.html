@@ -166,6 +166,7 @@
       
         <h4 id="什么是static">什么是static</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;”static” 是java中的关键字，中文的意思是静态的。它可以被用来修饰成员变量，成员方法或者代码块。被static修饰的成员变量和成员方法独立于该类的任何对象。也就是说，它不依赖类特定的实例，被类的所有实例共享。只要这个类被加载，Java虚拟机就能根据类名在运行时数据区的方法区内定找到他们。因此，static对象可以在它的任何对象创建之前访问，无需引用任何对象。</p>
 <h4 id="如何使用static">如何使用static</h4><p>1.static 修饰的成员变量或成员方法<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当一个类成员变量或者类方法被声明为public static 时，这个成员变量或者方法不需要被实例化就可以被其他类通过类名调用。但是如果是private static，我们依旧需要在另一个类中实例化一个对象之后再使用这个变量或方法。例如：</p>
+<a id="more"></a>
 <pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">countStudent</span>{
     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> num;
     <span class="keyword">public</span> String name;
