@@ -22,7 +22,7 @@
 
 
 
-  <meta name="keywords" content="first blog," />
+  <meta name="keywords" content="Algorithm,Java,sort," />
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <title> Hello World--start today // Hello World </title>
+  <title> Algorithm1-BubbleSort // Hello World </title>
 </head>
 
 <body>
@@ -121,7 +121,7 @@
           
           
             
-              Hello World--start today
+              Algorithm1-BubbleSort
             
           
         </h1>
@@ -129,14 +129,14 @@
 
       <div class="post-meta">
         <span class="post-time">
-          Posted on 2015-05-16
+          Posted on 2015-05-17
         </span>
 
         
           <span class="post-category">
             &nbsp; | &nbsp; In
             
-              <a href="/categories/talks/">talks</a>
+              <a href="/categories/computer-technology/">computer technology</a>
 
               
               
@@ -149,8 +149,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/05/15/hello-world/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/15/hello-world/"></span>
+            <a href="/2015/05/16/Algorithm1-BubbleSort/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/16/Algorithm1-BubbleSort/"></span>
             </a>
           </span>
           
@@ -164,8 +164,72 @@
       
 
       
-        <h2 id="Start_from_here">Start from here</h2><p><em>Welcome to my blog, it is a place to share our ideas.and I hope I can imporve myself by study from others.</em><br><strong>Thanks all</strong></p>
+        <h4 id="Bubble_Sort">Bubble Sort</h4><blockquote>
+<p>Bubble sort is a simple and well-known sorting algorithm. It is used in practice once in a blue moon and its main application is to make an introduction to the sorting algorithms. Bubble sort belongs to O(n2) sorting algorithms, which makes it quite inefficient for sorting large data volumes. Bubble sort is stable and adaptive.</p>
+</blockquote>
+<h4 id="Algorithm">Algorithm</h4><blockquote>
+<p>1.Compare each pair of adjacent elements from the beginning of an array and, if they are in reversed order, swap them.<br>2.If at least one swap has been done, repeat step 1.<br>You can imagine that on every step big bubbles float to the surface and stay there. At the step, when no bubble moves, sorting stops. Let us see an example of sorting an array to make the idea of bubble sort clearer.</p>
+</blockquote>
+<p><img src="http://www.algolist.net/img/sorts/bubble-sort-1.png" alt="enter image description here"></p>
+<h4 id="My_Code">My Code</h4><pre><code><span class="keyword">public</span> <span class="keyword">class</span> bubbleSort {
+<span class="keyword">private</span> <span class="keyword">int</span>[] arr;
+<span class="keyword">private</span> <span class="keyword">int</span> length;
+<span class="keyword">private</span> boolean isSorted = <span class="keyword">false</span>;
 
+<span class="function"><span class="keyword">public</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>)</span> </span>{
+    <span class="keyword">this</span>.arr = <span class="built_in">array</span>;
+    <span class="keyword">this</span>.length = <span class="built_in">array</span>.length;
+}
+
+<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span> </span>{
+    <span class="keyword">return</span> <span class="keyword">this</span>.length;
+}
+
+
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printout</span><span class="params">()</span></span>{
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="keyword">this</span>.length;i++){
+        System.out.print(<span class="keyword">this</span>.arr[i] + <span class="string">" "</span>);
+    }
+    System.out.println();
+}
+
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>{
+    <span class="keyword">int</span> temp=arr[i];
+    arr[i]=arr[j];
+    arr[j]=temp;
+}
+
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bubbleSort1</span><span class="params">()</span></span>{
+    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="keyword">this</span>.length;i++){
+        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;<span class="keyword">this</span>.length;j++){
+            <span class="keyword">if</span>(<span class="keyword">this</span>.arr[j]&lt;<span class="keyword">this</span>.arr[j-<span class="number">1</span>]){
+                swap(arr,j,j-<span class="number">1</span>);
+                <span class="comment">/*int temp=this.arr[j];
+                this.arr[j]=this.arr[j-1];
+                this.arr[j-1]=temp;*/</span>
+            }
+        }
+    }
+}
+
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bubbleSort2</span><span class="params">()</span></span>{
+    <span class="keyword">int</span> flag=<span class="keyword">this</span>.length;
+    <span class="keyword">int</span> j,k;
+
+    <span class="keyword">while</span>(flag&gt;<span class="number">0</span>){
+        k=flag;
+        flag=<span class="number">0</span>;<span class="comment">//this is important for exit the while loop</span>
+        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;k;j++){
+            <span class="keyword">if</span>(<span class="keyword">this</span>.arr[j]&lt;<span class="keyword">this</span>.arr[j-<span class="number">1</span>]){
+                swap(arr,j,j-<span class="number">1</span>);
+                flag=j;
+            }
+        }
+
+    }
+  }
+}
+</code></pre>
       
     </div>
 
@@ -173,7 +237,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/first-blog/"> #first blog </a>
+            <a href="/tags/Algorithm/"> #Algorithm </a>
+          
+            <a href="/tags/Java/"> #Java </a>
+          
+            <a href="/tags/sort/"> #sort </a>
           
         </div>
       
@@ -182,11 +250,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/05/16/Java-basic1-static/">Java基础1--static</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/05/16/Java-basic1-static/">Java基础1--static</a>
             
           </div>
         </div>
@@ -294,7 +362,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Start_from_here"><span class="nav-number">1.</span> <span class="nav-text">Start from here</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bubble_Sort"><span class="nav-number">1.</span> <span class="nav-text">Bubble Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Algorithm"><span class="nav-number">2.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#My_Code"><span class="nav-number">3.</span> <span class="nav-text">My Code</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -900,9 +968,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'Jason';
-      var disqus_identifier = '2015/05/15/hello-world/';
-      var disqus_title = 'Hello World--start today';
-      var disqus_url = 'http://yoursite.com/2015/05/15/hello-world/';
+      var disqus_identifier = '2015/05/16/Algorithm1-BubbleSort/';
+      var disqus_title = 'Algorithm1-BubbleSort';
+      var disqus_url = 'http://yoursite.com/2015/05/16/Algorithm1-BubbleSort/';
 
       (function(){
         var dsq = document.createElement('script');

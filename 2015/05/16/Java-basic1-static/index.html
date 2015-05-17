@@ -166,11 +166,62 @@
       
         <h4 id="什么是static">什么是static</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;”static” 是java中的关键字，中文的意思是静态的。它可以被用来修饰成员变量，成员方法或者代码块。被static修饰的成员变量和成员方法独立于该类的任何对象。也就是说，它不依赖类特定的实例，被类的所有实例共享。只要这个类被加载，Java虚拟机就能根据类名在运行时数据区的方法区内定找到他们。因此，static对象可以在它的任何对象创建之前访问，无需引用任何对象。</p>
 <h4 id="如何使用static">如何使用static</h4><p>1.static 修饰的成员变量或成员方法<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当一个类成员变量或者类方法被声明为public static 时，这个成员变量或者方法不需要被实例化就可以被其他类通过类名调用。但是如果是private static，我们依旧需要在另一个类中实例化一个对象之后再使用这个变量或方法。例如：</p>
-<p><pre><code>public class countStudent{<br>    public static int num;<br>    public String name;<br>    public countStudent(String name){<br>      this.name=name;<br>    }<br>    public static int getNum(){<br>    return num;<br>    }<br>    public String getName(){<br>    return this.name;<br>    }<br>    ……………..<br>}<br>public class test{<br>    public static void main(String[] args){<br>        System.out.println(countStudent.num);<br>        countStudent a=new countStudent(name);<br>        System.out.println(a.name);<br>    }<br>}</code></pre></p>
-<p>2.static类方法需要注意什么<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;被声明为static的类方法可以直接调用本类中的被声明为static的类成员变量或者成员方法，但是不能直接调用非static变量和方法，如果要调用，必须先实例化一个对象，然后再调用。非static类方法可以直接调用static和非static类成员。</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">countStudent</span>{
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> num;
+    <span class="keyword">public</span> String name;
+    <span class="function"><span class="keyword">public</span> <span class="title">countStudent</span><span class="params">(String name)</span></span>{
+      <span class="keyword">this</span>.name=name;
+    }
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNum</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> num;
+    }
+    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>{
+    <span class="keyword">return</span> <span class="keyword">this</span>.name;
+    }
+    .................
+}
+
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title">test</span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>{
+        System.<span class="keyword">out</span>.println(countStudent.num);
+        countStudent a=<span class="keyword">new</span> countStudent(name);
+        System.<span class="keyword">out</span>.println(a.name);
+    }
+}
+</code></pre><p>2.static类方法需要注意什么<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;被声明为static的类方法可以直接调用本类中的被声明为static的类成员变量或者成员方法，但是不能直接调用非static变量和方法，如果要调用，必须先实例化一个对象，然后再调用。非static类方法可以直接调用static和非static类成员。</p>
 <p>3.static代码块<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static 代码块也叫静态代码块，是在类中独立于类成员的static语句块，可以有多个，位置可以随便放，它不在任何的方法体内，JVM加载类时会执行这些静态的代码块，如果static代码块有多个，JVM将按照它们在类中出现的先后顺序依次执行它们，每个代码块只会被执行一次。static代码块会优于非static代码块被先执行。<strong>同时静态初始化块只能给静态变量赋值，不能初始化普通的成员变量。</strong></p>
-<p><pre><code>public class HelloWorld {<br>        String name; // 声明变量name<br>        String sex; // 声明变量sex<br>        static int age;// 声明静态变量age<br>        // 构造方法<br>        public  HelloWorld () {<br>        System.out.println(“通过构造方法初始化name”);<br>        name = “tom”;<br>    }<br>        // 初始化块<br>        {<br>            System.out.println(“通过初始化块初始化sex”);<br>            sex = “男”;<br>        }<br>        // 静态初始化块<br>         static{<br>        System.out.println(“通过静态初始化块初始化age”);<br>        age = 20;<br>        }<br>        public void show() {<br>            System.out.println(“姓名：” + name + “，性别：” + sex + “，年龄：” + age);<br>        }<br>        public static void main(String[] args) {<br>            // 创建对象<br>            HelloWorld hello = new HelloWorld();<br>            // 调用对象的show方法<br>            hello.show();<br>            HelloWorld hh=new HelloWorld();<br>            hh.show();<br>        }<br> }</code></pre></p>
-<p>4.static final<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static final用来修饰成员变量和成员方法，可简单理解为“全局常量”！对于变量，表示一旦给值就不可修改，并且通过类名可以访问。对于方法，表示不可覆盖，并且可以通过类名直接访问。</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HelloWorld</span> {
+    String name; <span class="comment">// 声明变量name</span>
+    String sex; <span class="comment">// 声明变量sex</span>
+    <span class="keyword">static</span> <span class="keyword">int</span> age;<span class="comment">// 声明静态变量age</span>
+    <span class="comment">// 构造方法</span>
+    <span class="function"><span class="keyword">public</span>  <span class="title">HelloWorld</span> <span class="params">()</span> </span>{ 
+        System.<span class="keyword">out</span>.println(<span class="string">"通过构造方法初始化name"</span>);
+        name = <span class="string">"tom"</span>;
+    }
+    <span class="comment">// 初始化块</span>
+    { 
+        System.<span class="keyword">out</span>.println(<span class="string">"通过初始化块初始化sex"</span>);
+        sex = <span class="string">"男"</span>;
+    }
+    <span class="comment">// 静态初始化块</span>
+    <span class="keyword">static</span>{ 
+        System.<span class="keyword">out</span>.println(<span class="string">"通过静态初始化块初始化age"</span>);
+        age = <span class="number">20</span>;
+    }
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>{
+        System.<span class="keyword">out</span>.println(<span class="string">"姓名："</span> + name + <span class="string">"，性别："</span> + sex + <span class="string">"，年龄："</span> + age);
+    }
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{
+        <span class="comment">// 创建对象</span>
+        HelloWorld hello = <span class="keyword">new</span> HelloWorld();
+        <span class="comment">// 调用对象的show方法</span>
+        hello.show();
+        HelloWorld hh=<span class="keyword">new</span> HelloWorld();
+        hh.show();
+    }
+ }
+</code></pre><p>4.static final<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static final用来修饰成员变量和成员方法，可简单理解为“全局常量”！对于变量，表示一旦给值就不可修改，并且通过类名可以访问。对于方法，表示不可覆盖，并且可以通过类名直接访问。</p>
 
       
     </div>
@@ -187,6 +238,8 @@
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/05/16/Algorithm1-BubbleSort/">Algorithm1-BubbleSort</a>
             
           </div>
 
@@ -256,7 +309,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -270,7 +323,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">tags</span>
               </a>
           </div>
