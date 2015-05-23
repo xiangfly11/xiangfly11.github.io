@@ -33,7 +33,7 @@
 
 
 
-  <title> Algorithm1-BubbleSort // Hello World </title>
+  <title> Algorithm2-InsertSort // Hello World </title>
 </head>
 
 <body>
@@ -121,7 +121,7 @@
           
           
             
-              Algorithm1-BubbleSort
+              Algorithm2-InsertSort
             
           
         </h1>
@@ -129,7 +129,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          Posted on 2015-05-17
+          Posted on 2015-05-23
         </span>
 
         
@@ -149,8 +149,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/05/16/Algorithm1-BubbleSort/#comments" >
-              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/16/Algorithm1-BubbleSort/"></span>
+            <a href="/2015/05/22/Algorithm2-InsertSort/#comments" >
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/05/22/Algorithm2-InsertSort/"></span>
             </a>
           </span>
           
@@ -164,22 +164,21 @@
       
 
       
-        <h4 id="Bubble_Sort">Bubble Sort</h4><blockquote>
-<p>Bubble sort is a simple and well-known sorting algorithm. It is used in practice once in a blue moon and its main application is to make an introduction to the sorting algorithms. Bubble sort belongs to O(n2) sorting algorithms, which makes it quite inefficient for sorting large data volumes. Bubble sort is stable and adaptive.</p>
-</blockquote>
-<h4 id="Algorithm">Algorithm</h4><blockquote>
-<p>1.Compare each pair of adjacent elements from the beginning of an array and, if they are in reversed order, swap them.<br>2.If at least one swap has been done, repeat step 1.<br>You can imagine that on every step big bubbles float to the surface and stay there. At the step, when no bubble moves, sorting stops. Let us see an example of sorting an array to make the idea of bubble sort clearer.</p>
+        <h4 id="Insertion_Sort">Insertion Sort</h4><blockquote>
+<p>Insertion sort belongs to the O(n2) sorting algorithms. Unlike many sorting algorithms with quadratic complexity, it is actually applied in practice for sorting small arrays of data. For instance, it is used to improve quicksort routine. Some sources notice, that people use same algorithm ordering items, for example, hand of cards.</p>
 </blockquote>
 <a id="more"></a>
-<p><img src="http://www.algolist.net/img/sorts/bubble-sort-1.png" alt="enter image description here"></p>
-<h4 id="My_Code">My Code</h4><pre><code><span class="keyword">public</span> <span class="keyword">class</span> bubbleSort {
+<h4 id="Algorithm">Algorithm</h4><blockquote>
+<p>Insertion sort algorithm somewhat resembles selection sort. Array is imaginary divided into two parts - sorted one and unsorted one. At the beginning, sorted part contains first element of the array and unsorted one contains the rest. At every step, algorithm takes first element in the unsorted part and inserts it to the right place of the sorted one. When unsorted part becomes empty, algorithm stops. Sketchy, insertion sort algorithm step looks like this:</p>
+</blockquote>
+<p><img src="http://www.algolist.net/img/sorts/insertion-sort-sketchy-before.png" alt="algorithm"><br>becomes<br><img src="http://www.algolist.net/img/sorts/insertion-sort-sketchy-after.png" alt="enter image description here"><br><br><br>Algorithm Analysis<br><img src="http://www.algolist.net/img/sorts/insertion-sort-1.png" alt="algorithm analysis"><br><br><br>Dynamic Picture<br>![Insert Sort]<br>(<a href="http://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" target="_blank" rel="external">http://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif</a>)</p>
+<h4 id="My_Code">My Code</h4><pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">insertSort</span> {
 <span class="keyword">private</span> <span class="keyword">int</span>[] arr;
 <span class="keyword">private</span> <span class="keyword">int</span> length;
-<span class="keyword">private</span> boolean isSorted = <span class="keyword">false</span>;
 
-<span class="function"><span class="keyword">public</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span>[] <span class="built_in">array</span>)</span> </span>{
-    <span class="keyword">this</span>.arr = <span class="built_in">array</span>;
-    <span class="keyword">this</span>.length = <span class="built_in">array</span>.length;
+<span class="function"><span class="keyword">public</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>{
+    <span class="keyword">this</span>.arr = arr;
+    <span class="keyword">this</span>.length = arr.length;
 }
 
 <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getLength</span><span class="params">()</span> </span>{
@@ -187,45 +186,39 @@
 }
 
 
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printout</span><span class="params">()</span></span>{
-    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="keyword">this</span>.length;i++){
-        System.out.print(<span class="keyword">this</span>.arr[i] + <span class="string">" "</span>);
-    }
-    System.out.println();
-}
-
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span>{
-    <span class="keyword">int</span> temp=arr[i];
-    arr[i]=arr[j];
-    arr[j]=temp;
-}
-
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bubbleSort1</span><span class="params">()</span></span>{
-    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="keyword">this</span>.length;i++){
-        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;<span class="keyword">this</span>.length;j++){
-            <span class="keyword">if</span>(<span class="keyword">this</span>.arr[j]&lt;<span class="keyword">this</span>.arr[j-<span class="number">1</span>]){
-                swap(arr,j,j-<span class="number">1</span>);
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mInsertSort</span><span class="params">()</span> </span>{
+    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++)
+        <span class="comment">//get the position of the numbers</span>
+        <span class="keyword">if</span> (arr[i] &lt; arr[i - <span class="number">1</span>]) {
+            <span class="keyword">int</span> temp = arr[i];
+            <span class="comment">//record the position where should be replaced by another number</span>
+            <span class="keyword">int</span> j = i;
+            <span class="comment">//condition to decide the numbers which should be move to left</span>
+            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; arr[j - <span class="number">1</span>] &gt; temp) {
+                arr[j] = arr[j - <span class="number">1</span>];
+                j--;
             }
+            <span class="comment">//replace the unsorted number arr[i]</span>
+            arr[j] = temp;
         }
+}
+
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printout</span><span class="params">()</span> </span>{
+    <span class="keyword">for</span> (<span class="keyword">int</span> num:arr) {
+        System.<span class="keyword">out</span>.print(num + <span class="string">" "</span>);
+        }
+    System.<span class="keyword">out</span>.println();
     }
 }
 
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bubbleSort2</span><span class="params">()</span></span>{
-    <span class="keyword">int</span> flag=<span class="keyword">this</span>.length;
-    <span class="keyword">int</span> j,k;
 
-    <span class="keyword">while</span>(flag&gt;<span class="number">0</span>){
-        k=flag;
-        flag=<span class="number">0</span>;<span class="comment">//this is important for exit the while loop</span>
-        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;k;j++){
-            <span class="keyword">if</span>(<span class="keyword">this</span>.arr[j]&lt;<span class="keyword">this</span>.arr[j-<span class="number">1</span>]){
-                swap(arr,j,j-<span class="number">1</span>);
-                flag=j;
-            }
-        }
-
+<span class="keyword">public</span> <span class="keyword">class</span> <span class="title">testInsertSort</span> {
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>{
+        <span class="keyword">int</span>[] arr=<span class="keyword">new</span> <span class="keyword">int</span>[] {<span class="number">3</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">20</span>,<span class="number">0</span>};
+        insertSort sort=<span class="keyword">new</span> insertSort(arr);
+        sort.mInsertSort();
+        sort.printout();
     }
-  }
 }
 </code></pre>
       
@@ -248,13 +241,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/05/22/Algorithm2-InsertSort/">Algorithm2-InsertSort</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/05/16/Java-basic1-static/">Java基础1--static</a>
+              <a href="/2015/05/16/Algorithm1-BubbleSort/">Algorithm1-BubbleSort</a>
             
           </div>
         </div>
@@ -362,7 +353,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bubble_Sort"><span class="nav-number">1.</span> <span class="nav-text">Bubble Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Algorithm"><span class="nav-number">2.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#My_Code"><span class="nav-number">3.</span> <span class="nav-text">My Code</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Insertion_Sort"><span class="nav-number">1.</span> <span class="nav-text">Insertion Sort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Algorithm"><span class="nav-number">2.</span> <span class="nav-text">Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#My_Code"><span class="nav-number">3.</span> <span class="nav-text">My Code</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -968,9 +959,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'Jason';
-      var disqus_identifier = '2015/05/16/Algorithm1-BubbleSort/';
-      var disqus_title = 'Algorithm1-BubbleSort';
-      var disqus_url = 'http://yoursite.com/2015/05/16/Algorithm1-BubbleSort/';
+      var disqus_identifier = '2015/05/22/Algorithm2-InsertSort/';
+      var disqus_title = 'Algorithm2-InsertSort';
+      var disqus_url = 'http://yoursite.com/2015/05/22/Algorithm2-InsertSort/';
 
       (function(){
         var dsq = document.createElement('script');
