@@ -167,10 +167,10 @@
         <h4 id="Insertion_Sort">Insertion Sort</h4><blockquote>
 <p>Insertion sort belongs to the O(n2) sorting algorithms. Unlike many sorting algorithms with quadratic complexity, it is actually applied in practice for sorting small arrays of data. For instance, it is used to improve quicksort routine. Some sources notice, that people use same algorithm ordering items, for example, hand of cards.</p>
 </blockquote>
-<a id="more"></a>
 <h4 id="Algorithm">Algorithm</h4><blockquote>
 <p>Insertion sort algorithm somewhat resembles selection sort. Array is imaginary divided into two parts - sorted one and unsorted one. At the beginning, sorted part contains first element of the array and unsorted one contains the rest. At every step, algorithm takes first element in the unsorted part and inserts it to the right place of the sorted one. When unsorted part becomes empty, algorithm stops. Sketchy, insertion sort algorithm step looks like this:</p>
 </blockquote>
+<a id="more"></a>
 <p><img src="http://www.algolist.net/img/sorts/insertion-sort-sketchy-before.png" alt="algorithm"><br>becomes<br><img src="http://www.algolist.net/img/sorts/insertion-sort-sketchy-after.png" alt="enter image description here"><br><br><br>Algorithm Analysis<br><img src="http://www.algolist.net/img/sorts/insertion-sort-1.png" alt="algorithm analysis"><br><br><br>Dynamic Picture<br>![Insert Sort]<br>(<a href="http://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif" target="_blank" rel="external">http://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif</a>)</p>
 <h4 id="My_Code">My Code</h4><pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">insertSort</span> {
 <span class="keyword">private</span> <span class="keyword">int</span>[] arr;
